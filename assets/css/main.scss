@@ -1,0 +1,18 @@
+@import "base";
+
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+
+
+*[debug] {
+  border: 1px solid red;
+}
+
+.font-400 {
+  font-weight: 400;
+}
+
+.font-700 {
+  font-weight: 700;
+}
