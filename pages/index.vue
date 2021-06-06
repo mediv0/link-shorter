@@ -7,14 +7,17 @@
         </div>
         <div class="h-divider"></div>
         <submit-form />
+        <link-dashboard />
     </div>
 </template>
 
 <script>
 import form from "@/components/Form.vue";
+import Dashboard from "@/components/Dashboard.vue";
 export default {
     components: {
         submitForm: form,
+        LinkDashboard: Dashboard,
     },
 };
 </script>
