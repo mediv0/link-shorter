@@ -10746,6 +10746,11 @@ xmlchars@^2.2.0:
   resolved "https://registry.yarnpkg.com/xmlchars/-/xmlchars-2.2.0.tgz#060fe1bcb7f9c76fe2a17db86a9bc3ab894210cb"
   integrity sha512-JZnDKK8B0RCDw84FNdDAIpZK+JuJw+s7Lz8nksI7SIuU3UXJJslUthsi+uWBUYOwPFwW7W7PRLRfUKpxjtjFCw==
 
+xmodal-vue@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/xmodal-vue/-/xmodal-vue-1.0.5.tgz#74a7789ecfd2f5b528126247cde10770330194e9"
+  integrity sha512-XqqqARzjXhmvwNSJ6qDQD74tI8TvNE9+rwMwfeXx/ZATW4cwvf9ncFjS9GRtPGm6R/t+v5Ne0hmyhWBml0cIZQ==
+
 xtend@^4.0.0, xtend@~4.0.1:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.2.tgz#bb72779f5fa465186b1f438f674fa347fdb5db54"

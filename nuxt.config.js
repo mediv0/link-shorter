@@ -13,7 +13,7 @@ export default {
     css: ["@/assets/css/main.scss"],
 
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-    plugins: [],
+    plugins: [{ src: "~/plugins/xmodal.js", ssr: false }],
 
     // Auto import components: https://go.nuxtjs.dev/config-components
     components: false,
@@ -32,7 +32,7 @@ export default {
     ],
 
     styleResources: {
-        scss: ["@/assets/css/_colors.scss"],
+        scss: ["@/assets/css/_colors.scss", "@/assets/css/_mixins.scss"],
     },
 
     // Axios module configuration: https://go.nuxtjs.dev/config-axios
