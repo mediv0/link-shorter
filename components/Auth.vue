@@ -1,6 +1,8 @@
 <template>
     <div class="auth">
-        <img src="~/assets/images/dashboard_empty_state.png" alt="login logo" class="auth__pic" />
+        <div class="auth__pic">
+            <img src="~/assets/images/dashboard_empty_state.png" alt="login logo" />
+        </div>
         <p class="font-700">Login to your account to see your links</p>
         <p class="auth__desc_text">very cool stuff coming soon...</p>
 
@@ -38,8 +40,18 @@ export default {
 
     &__pic {
         width: 300px;
+        min-width: 300px;
+        min-height: 260px;
+        height: 260px;
+        background: transparent;
         pointer-events: none;
         user-select: none;
+
+        & > img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
     }
 
     &__desc_text {
