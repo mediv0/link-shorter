@@ -1,0 +1,18 @@
+.textbox_label {
+    color: $color-gray-2;
+    display: block;
+    margin-top: 10px;
+}
+.textbox {
+    width: 100%;
+    background: $color-gray-4;
+    border: 1px solid $color-gray-3;
+    outline: none;
+    border-radius: 7px;
+    padding: 10px 12px 11px 12px;
+
+
+    &:focus {
+        border-color: black;
+    }
+}
