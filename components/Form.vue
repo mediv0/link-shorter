@@ -1,7 +1,7 @@
 <template>
     <div class="form">
         <input type="text" name="form_input" placeholder="Enter your url..." class="form__input" />
-        <button class="form__submit">Process</button>
+        <button class="form__submit" @click="convertUrl">Process</button>
         <p v-if="hasError" class="form__error">Invalid URL. please provide valid url and try again</p>
     </div>
 </template>
@@ -11,7 +11,25 @@ export default {
     data() {
         return {
             hasError: false,
+            audio: null,
         };
+    },
+    async created() {
+        await this.fetchNotificationAudio();
+    },
+    methods: {
+        convertUrl() {
+            this.playDoneSong();
+        },
+        async fetchNotificationAudio() {
+            const { default: path } = await import("@/assets/audio/done.mp3");
+            this.audio = new Audio(path);
+        },
+        playDoneSong() {
+            this.audio.pause();
+            this.audio.currentTime = 0;
+            this.audio.play();
+        },
     },
 };
 </script>
