@@ -1,6 +1,6 @@
 <template>
     <div class="form">
-        <input type="text" name="form_input" class="form__input" />
+        <input type="text" name="form_input" placeholder="Enter your url..." class="form__input" />
         <button class="form__submit">Process</button>
         <p v-if="hasError" class="form__error">Invalid URL. please provide valid url and try again</p>
     </div>
@@ -37,6 +37,12 @@ $form-border-radius: 3px;
         border: 1px solid $color-gray-3;
         border-right: none;
         border-radius: $form-border-radius 0 0 $form-border-radius;
+        transition: 100ms ease;
+
+        &:focus {
+            box-shadow: 0 0 5px $color-blue;
+            border: 1px solid $color-blue;
+        }
     }
 
     &__submit {
