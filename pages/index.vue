@@ -5,11 +5,18 @@
             <p class="logo__name font-700">Link<span>Share</span></p>
             <p class="logo__github">V 1.0.0</p>
         </div>
+        <div class="h-divider"></div>
+        <submit-form />
     </div>
 </template>
 
 <script>
-export default {};
+import form from "@/components/Form.vue";
+export default {
+    components: {
+        submitForm: form,
+    },
+};
 </script>
 
 <style lang="scss" scoped>
