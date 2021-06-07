@@ -14,7 +14,14 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.13.1",
     "core-js": "^3.9.1",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "mongoose": "^5.12.13",
+    "morgan": "^1.10.0",
     "nuxt": "^2.15.3",
+    "winston": "^3.3.3",
     "xmodal-vue": "^1.0.5"
   },
   "devDependencies": {
