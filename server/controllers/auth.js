@@ -35,6 +35,6 @@ module.exports.postSignup = async (req, res) => {
         await user.save();
         res.status(200).send({ _id: user._id, status: "User created" });
     } catch (ex) {
-        res.status(400).send(ex.message);
+        res.status(400).send({ error: ex.message });
     }
 };
