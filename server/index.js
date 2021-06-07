@@ -1,7 +1,7 @@
 const express = require("express");
 const helmet = require("helmet");
 require("express-async-errors");
-require("dotenv").config();
+require("dotenv").config({ path: `./.env.${process.env.NODE_ENV}` });
 const cors = require("cors");
 
 const error = require("./routes/error.js");
