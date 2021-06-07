@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
-module.exports = function () {
-    mongoose.connect(
+module.exports = async function () {
+    await mongoose.connect(
         process.env.DB_URL,
         {
             useNewUrlParser: true,
