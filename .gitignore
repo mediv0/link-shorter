@@ -7,6 +7,10 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+server/common/access.log
+access.log*
+errors.log
+
 # Runtime data
 pids
 *.pid
