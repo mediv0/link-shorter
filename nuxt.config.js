@@ -13,7 +13,10 @@ export default {
     css: ["@/assets/css/main.scss"],
 
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-    plugins: [{ src: "~/plugins/xmodal.js", ssr: false }],
+    plugins: [
+        { src: "~/plugins/xmodal.js", ssr: false },
+        { src: "~/plugins/validator.js", ssr: false },
+    ],
 
     serverMiddleware: ["~/server/index.js"],
 
@@ -38,7 +41,10 @@ export default {
     },
 
     // Axios module configuration: https://go.nuxtjs.dev/config-axios
-    axios: {},
+    axios: {
+        baseURL: "http://localhost:3000",
+        credentials: true,
+    },
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
     build: {
