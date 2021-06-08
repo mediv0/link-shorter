@@ -14,11 +14,14 @@ module.exports.postLogin = async (req, res, next) => {
         await validateBody(emailSchema, { email: req.body.email });
 
         const user = await User.findOne({ email: req.body.email }).select({ password: 1 });
+        if (!user) throw new ErrorHandler(401, "Your email or password is incorrect.");
 
         const isPasswordValid = await bcrypt.compare(req.body.password, user.password);
 
         if (isPasswordValid === true) {
-            res.send("password is valid");
+            req.session.isAuth = true;
+            req.session.userId = user._id;
+            res.sendStatus(200);
         } else {
             throw new ErrorHandler(401, "Your email or password is incorrect.");
         }
@@ -58,6 +61,10 @@ module.exports.postSignup = async (req, res, next) => {
     } catch (error) {
         next(error);
     }
+};
+
+module.exports.isAuth = (req, res, next) => {
+    res.status(200).send({ isAuth: true });
 };
 
 async function validateBody(schema, body) {
