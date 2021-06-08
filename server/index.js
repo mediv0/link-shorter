@@ -3,6 +3,7 @@ const helmet = require("helmet");
 require("express-async-errors");
 require("dotenv").config({ path: `./.env.${process.env.NODE_ENV}` });
 const cors = require("cors");
+const Url = require("./models/Url");
 
 const error = require("./routes/error.js");
 const auth = require("./routes/auth.js");
@@ -21,6 +22,10 @@ app.use(helmet());
 app.use(express.json());
 app.use("/auth", auth);
 app.use("/link", url);
+app.post("/redirect", async (req, res) => {
+    const url = await Url.findOne({ short: req.body.param }).select("orginal -_id").exec();
+    res.send({ url });
+});
 app.use(error(logger));
 
 module.exports = {
