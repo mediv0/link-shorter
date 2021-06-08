@@ -30,6 +30,7 @@
     "morgan": "^1.10.0",
     "nanoid": "^3.1.23",
     "nuxt": "^2.15.3",
+    "vue-toastification": "^1.7.11",
     "winston": "^3.3.3",
     "xmodal-vue": "^1.0.5"
   },

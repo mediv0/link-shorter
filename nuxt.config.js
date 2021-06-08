@@ -16,6 +16,7 @@ export default {
     plugins: [
         { src: "~/plugins/xmodal.js", ssr: false },
         { src: "~/plugins/validator.js", ssr: false },
+        { src: "~/plugins/toast.js", ssr: false },
     ],
 
     serverMiddleware: ["~/server/index.js"],
