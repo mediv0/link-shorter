@@ -29,7 +29,7 @@ module.exports.create = async (req, res, next) => {
     }
 };
 
-const ITEMS_PER_PAGE = 10;
+const ITEMS_PER_PAGE = 5;
 module.exports.getLink = async (req, res, next) => {
     const { page } = req.query;
     if (req.session.userId) {
