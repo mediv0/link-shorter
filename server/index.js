@@ -12,6 +12,7 @@ const app = express();
 
 // init configs
 require("./common/initDatabase")();
+require("./common/initSession")(app);
 require("./common/initMorgan")(app);
 const logger = require("./common/initWinston")();
 app.use(cors());
