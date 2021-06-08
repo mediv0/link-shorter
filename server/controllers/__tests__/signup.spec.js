@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const User = require("../../models/User");
 let server;
 
-describe("/api/auth", () => {
+describe("/api/auth/signup", () => {
     beforeEach(async () => {
         server = require("../../index");
         server = await server.handler.listen(3001);
@@ -48,6 +48,6 @@ describe("/api/auth", () => {
             .set("Accept", "application/json");
 
         expect(res.status).toBe(400);
-        expect(res.body).toEqual({ error: '"confirmPassword" must be [ref:password]' });
+        expect(res.body).toEqual({ message: '"confirmPassword" must be [ref:password]', status: "error", statusCode: 400 });
     });
 });
