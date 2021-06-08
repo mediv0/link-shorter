@@ -2,30 +2,51 @@ const bcrypt = require("bcrypt");
 const Joi = require("joi");
 const passwordComplexity = require("joi-password-complexity");
 const User = require("../models/User");
+const { ErrorHandler } = require("../controllers/error");
 
-const complexityOptions = {
-    min: 8,
-    max: 30,
-    lowerCase: 1,
-    upperCase: 1,
-    numeric: 1,
-    symbol: 0,
-    requirementCount: 2,
-};
-
-const joiSchema = Joi.object({
-    email: Joi.string().email().required(),
-    password: passwordComplexity(complexityOptions),
-    confirmPassword: Joi.string().required().valid(Joi.ref("password")),
-});
-
-module.exports.postLogin = (req, res) => {
+module.exports.postLogin = async (req, res, next) => {
     // validate email & password
+    const emailSchema = Joi.object({
+        email: Joi.string().email().required(),
+    });
+
+    try {
+        await validateBody(emailSchema, { email: req.body.email });
+
+        const user = await User.findOne({ email: req.body.email }).select({ password: 1 });
+
+        const isPasswordValid = await bcrypt.compare(req.body.password, user.password);
+
+        if (isPasswordValid === true) {
+            res.send("password is valid");
+        } else {
+            throw new ErrorHandler(401, "Your email or password is incorrect.");
+        }
+    } catch (error) {
+        next(error);
+    }
 };
 
-module.exports.postSignup = async (req, res) => {
+module.exports.postSignup = async (req, res, next) => {
+    const complexityOptions = {
+        min: 8,
+        max: 30,
+        lowerCase: 1,
+        upperCase: 1,
+        numeric: 1,
+        symbol: 0,
+        requirementCount: 2,
+    };
+
+    const signUpSchema = Joi.object({
+        email: Joi.string().email().required(),
+        password: passwordComplexity(complexityOptions),
+        confirmPassword: Joi.string().required().valid(Joi.ref("password")),
+    });
+
     try {
-        await joiSchema.validateAsync(req.body);
+        await validateBody(signUpSchema, req.body);
+
         const hash = await bcrypt.hash(req.body.password, 12);
         const user = new User({
             email: req.body.email,
@@ -34,7 +55,15 @@ module.exports.postSignup = async (req, res) => {
 
         await user.save();
         res.status(200).send({ _id: user._id, status: "User created" });
-    } catch (ex) {
-        res.status(400).send({ error: ex.message });
+    } catch (error) {
+        next(error);
     }
 };
+
+async function validateBody(schema, body) {
+    try {
+        await schema.validateAsync(body);
+    } catch (error) {
+        throw new ErrorHandler(403, error.message);
+    }
+}
