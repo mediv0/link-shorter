@@ -64,6 +64,6 @@ async function validateBody(schema, body) {
     try {
         await schema.validateAsync(body);
     } catch (error) {
-        throw new ErrorHandler(403, error.message);
+        throw new ErrorHandler(400, error.message);
     }
 }
