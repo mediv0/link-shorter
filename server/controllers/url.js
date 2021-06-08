@@ -29,10 +29,19 @@ module.exports.create = async (req, res, next) => {
     }
 };
 
+const ITEMS_PER_PAGE = 10;
 module.exports.getLink = async (req, res, next) => {
-    // get links for given id
-    // check if given id is same as current seasson id ( security )
-    // show to user
+    const { page } = req.query;
+    if (req.session.userId) {
+        const links = await Url.find({ creator: req.session.userId })
+            .select("-_id -__v -creator")
+            .skip((page - 1) * ITEMS_PER_PAGE)
+            .limit(ITEMS_PER_PAGE)
+            .exec();
+        res.status(200).send({ list: links });
+    } else {
+        next(new ErrorHandler(500, "something went wrong..."));
+    }
 };
 
 function hasUserRefrence(id) {
