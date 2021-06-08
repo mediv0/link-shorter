@@ -1,6 +1,6 @@
 <template>
     <div class="form">
-        <input type="text" name="form_input" placeholder="Enter your url..." class="form__input" />
+        <input v-model="url" type="text" name="form_input" placeholder="Enter your url..." class="form__input" />
         <button class="form__submit" @click="convertUrl">Process</button>
         <p v-if="hasError" class="form__error">Invalid URL. please provide valid url and try again</p>
     </div>
@@ -10,16 +10,39 @@
 export default {
     data() {
         return {
+            url: "",
+            isFetching: false,
             hasError: false,
             audio: null,
         };
     },
-    async created() {
+    async mounted() {
         await this.fetchNotificationAudio();
     },
     methods: {
-        convertUrl() {
-            this.playDoneSong();
+        async convertUrl() {
+            if (!this.isFetching) {
+                this.isFetching = true;
+                this.hasError = false;
+                try {
+                    const { data } = await this.$axios.post("/api/link/create", {
+                        url: this.url,
+                    });
+                    this.playDoneSong();
+                    this.$toast.success(`your link: xe.na/l/${data.url}`, {
+                        timeout: 7000,
+                        draggable: false,
+                        closeOnClick: false,
+                    });
+                    this.url = "";
+                } catch (e) {
+                    const { response } = e;
+
+                    this.errorMsg = response.data.message;
+                    this.hasError = true;
+                }
+                this.isFetching = false;
+            }
         },
         async fetchNotificationAudio() {
             const { default: path } = await import("@/assets/audio/done.mp3");
