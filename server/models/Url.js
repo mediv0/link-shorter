@@ -1,4 +1,4 @@
-const mongoose = require("mongodb");
+const mongoose = require("mongoose");
 
 const UrlSchema = new mongoose.Schema({
     orginal: {
@@ -10,11 +10,11 @@ const UrlSchema = new mongoose.Schema({
         required: true,
     },
     creator: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Users",
+        type: String,
+        required: false,
     },
 });
 
-const Url = mongoose.model("Urls", UrlSchema);
+const Url = mongoose.model("urls", UrlSchema);
 
-exports.User = Url;
+module.exports = Url;
