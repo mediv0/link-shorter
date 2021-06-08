@@ -36,3 +36,11 @@
     display: block;
     margin-top: 10px;
 }
+
+.successMsg {
+    color: $color-primary;
+}
+
+.errorMsg {
+    color: $color-red;
+}
