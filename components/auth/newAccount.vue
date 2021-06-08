@@ -117,6 +117,7 @@ export default {
                         }
                     );
                     this.showSuccessMsg = true;
+                    this.$store.commit("setIsAuth", true);
                 } catch (e) {
                     this.showErrorMsg = true;
                 }
