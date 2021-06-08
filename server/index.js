@@ -6,6 +6,7 @@ const cors = require("cors");
 
 const error = require("./routes/error.js");
 const auth = require("./routes/auth.js");
+const url = require("./routes/url.js");
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(helmet());
 
 app.use(express.json());
 app.use("/auth", auth);
+app.use("/link", url);
 app.use(error(logger));
 
 module.exports = {
