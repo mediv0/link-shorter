@@ -56,5 +56,6 @@ describe("/api/auth/login", () => {
             .set("Accept", "application/json");
 
         expect(res.body).toEqual({ message: "Your email or password is incorrect.", status: "error", statusCode: 401 });
+        await mongoose.connection.close();
     });
 });
